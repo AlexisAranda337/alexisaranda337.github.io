@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+      MathJax = {
+        loader: {
+          load: [
+            "input/tex-base",
+            "[tex]/newcommand",
+            "[tex]/action",
+            "output/chtml",
+            '[tex]/mathtools',
+          ],
+        },
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["(", ")"],
+          ],
+          packages: ["base", "newcommand", "action",'mathtools',],
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"
+    ></script>
+  </head>
+  <body>
+    
+    \section{Si la ecuación (1) es integrable, resuelva}
+    \begin{equation}
+      (e^{x}y+e^{z})dx+(e^{y}z+e^{x})dy+(e^{y}-e^{x}y-e^{y}z)dz=0.
+    \end{equation}
+    \\
+    \subsection{Verificar que la ecuación (1) es integrable} 
+    
+    A partir de la forma de las ecuaciones Pfaff's
+    
+    \begin{equation}
+      P(x,y,z)dx+Q(x,y,z)dy+R(x,y,z)dz=0,
+    \end{equation}
+     
+    podemos identificar:
+     
+    \[P(x,y,z)=e^{x}y+e^{z}\]
+    \[Q(x,y,z)=e^{y}z+e^{x}\]
+    \[R(x,y,z)=e^{y}-e^{x}y-e^{y}z.\]
+    \\ 
+    Sea $\stackrel{\to }{A}=(e^{x}y+e^{z}, \hspace{0.3cm}e^{y}z+e^{x},\hspace{0.3cm} e^{y}-e^{x}y-e^{y}z)$. En general, sabemos que si  $\stackrel{\to}{A} \cdot (\nabla \times \stackrel{\to}{A} )=0$ entonces la ecuación (1) es integrable.
+    \\ \\ \\
+    Comenzaremos calculando $\nabla \times \stackrel{\to}{A}$
+    
+    $$\nabla \times \stackrel{\to}{A}=
+    \large
+    \begin{vmatrix*}
+      \hat{i} \hspace{0.6cm}& \hat{j} \hspace{0.6cm} & \hat{k} \\
+      \\
+      \frac{\partial }{\partial x} \hspace{0.6cm}& \frac{\partial }{\partial y} \hspace{0.6cm} &
+      \frac{\partial }{\partial z}\\
+      \\
+      e^{x}y+e^{z}\hspace{0.6cm}& e^{y}z+e^{x} \hspace{0.6cm}& e^{y}-e^{x}y-e^{y}z\\
+    \end{vmatrix*}$$
+    
+    $$= \hat{i}[\frac{\partial}{\partial y}(e^{y}-e^{x}y-e^{y}z)- \frac{\partial}{\partial z}(e^{y}z+e^{x})]- \hat{j}[\frac{\partial}{\partial x}(e^{y}-e^{x}y-e^{y}z)- \frac{\partial}{\partial z}(ye^{x}+e^{z})]$$
+    
+    $$+\hat{k}[\frac{\partial}{\partial x}(e^{y}z+e^{x})- \frac{\partial}{\partial y}(e^{x}y+e^{z})]$$
+    $$=\hat{i}(e^{y}-e^{x}-ze^{y}-e^{y})- \hat{j}(-e^{x}y-e^{z})+ \hat{k}(e^{x}-e^{x})=(-e^{x}-ze^{y},e^{x}y+e^{z},0)$$ 
+    \\
+    Por lo tanto $$\nabla \times \stackrel{\to}{A}= (-e^{x}-ze^{y},e^{x}y+e^{z},0).$$ \\
+    
+    Ahora calcularemos $ \stackrel{\to}{A} \cdot (\nabla \times \stackrel{\to}{A})$
+    $$\stackrel{\to}{A} \cdot (\nabla \times \stackrel{\to}{A})= 
+    (e^{x}y+e^{z},e^{y}z+e^{x},e^{y}-e^{x}y-e^{y}z) \cdot(-e^{x}-ze^{y},e^{x}y+e^{z},0)$$
+    $$=-ye^{2x}-zye^{x+y}-e^{x+z}-ze^{z+y}+yze^{x+y}+ye^{2x}+ze^{y+z}+e^{x+z}= 0.$$ 
+    \\
+    Como $\stackrel{\to}{A}\cdot(\nabla\times\stackrel{\to}{A})=0$ entonces la ecuación (1) es integrable.
+    \\ \\
+    \subsection{Solución de la ecuación (1)}
+    Para encontrar la solución consideremos a $z$ como parámetro constante, entonces $dz=0$ y la ecuación (1) se reduce a:
+    
+    \begin{equation}
+      (ye^{x}+e^{z})dx+(ze^{y}+e^{x})dy=0.
+    \end{equation}
+    \\
+    Consideremos a (3) como una ecuación diferencial ordinaria (EDO) de la forma $M(x,y)dx+N(x,y)dy=0$, donde:
+    $$M(x,y)=ye^{x}+e^{z} $$
+    $$N(x,y)=ze^{y}+e^{x}.$$
+    \\
+    En general, sabemos que si $\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}$ entonces la ecuación (3) es una EDO exacta. Realizando los cálculos obtenemos lo siguiente:
+    $$ \frac{\partial M}{\partial y} = \frac{\partial(ye^{x}+e^{z})}{\partial y}= e^{x}$$ 
+    $$\frac{\partial N}{\partial x}= \frac{\partial (ze^{y}+e^{x})}{\partial x}=e^{x}.$$
+    
+    Como la ecuación (3) es exacta podemos utilizar el método de solución de las EDO exactas para resolverla. Sea f(x,y) una función tal que:
+    $$\frac{\partial f(x,y)}{\partial x}= ye^{x}+e^{z}$$ 
+    entonces 
+    \\
+    $$\int\frac{\partial f}{\partial x} dx= \int (ye^{x}+e^{z})dx$$
+    \\
+    \begin{equation}
+      f(x,y)= ye^{x}+xe^{z}+h(y).
+    \end{equation}
+    \\
+    Además f(x,y) debe cumplir:
+    $$\frac{\partial f(x,y)}{\partial y}= ze^{y}+e^{x}.$$
+    \\
+    A partir de la ecuación (4) se obtiene lo siguiente:
+    $$\frac{\partial f}{\partial y}= e^{x} + \frac{d h}{d y}$$
+    \\
+    entonces
+    $$ze^{y}+e^{x} = e^{x} + \frac{d h}{d y}$$
+    \\
+    $$\frac{d h}{d y} = ze^{y}$$
+    \\
+    $$\int dh=\int e^{y}z dy$$
+    \\
+    \begin{equation}
+      h(y)= z e^{y}+c \hspace{0.8 cm}\text{con c contante.} 
+    \end{equation}\\
+    
+    Sustituyendo la ecuación (5) en la ecuación (4) obtenemos:
+    
+    $$f(x,y)= ye^{x}+xe^{z}+ z e^{y}+c.$$
+    
+    En particular se obtiene:
+    \begin{equation}
+      G(x,y,z)=ye^{x}+xe^{z}+ z e^{y}
+    \end{equation}
+    
+    que es solución de la ecuación (3).
+    \\  \\ \\
+    Ahora buscaremos un factor integrante $\mu(x,y,z) $ que convierta a la ecuación (1) en una diferencial exacta. En general, sabemos que $\frac{\partial G}{\partial x}=\mu P$, para nuestro caso:
+    \\
+    $$\frac{\partial(ye^{x}+xe^{z}+ze^y)}{\partial x}=\mu(ye^{x}+e^{z})$$
+    \\
+    $$ye^{x}+e^{z}=\mu(ye^{x}+e^{z})$$
+    \\
+    $$\mu = 1.$$
+    \\
+    Por otra parte, determinaremos a $K(x,y,z)=\mu R-\frac{\partial G}{\partial z}$, es decir,
+    \\
+    $$k(x,y,z)= e^{y}-ye^{x}-ze^{y}-(xe^{z}+e^{y})= -ye^{x}-ze^{y}-xe^{z}$$
+    
+    \begin{equation}
+      k(x,y,z)=-G(x,y,z).
+    \end{equation}
+    \\ \\
+    Con base a las ecuaciones (6) y (7), la ecuación (l) la podemos escribir como 
+    \begin{equation}
+      dG-G dz=0.
+    \end{equation}
+    Resolviendo obtenemos que:
+    $$dG=Gdz$$
+    $$\int \frac{d G}{G}=\int dz$$
+    \\
+    \centering $\ln |G| = z + \ln |c_{2}|$ \hspace{.8cm} con $c_{2}$ constante
+    \\
+    $$G=c_{2}e^{z}$$ 
+    \begin{equation}
+      ye^{x}+xe^{z}+ z e^{y}= c_{2}e^{z}
+    \end{equation}
+  </body>
+</html>
